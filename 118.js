@@ -1,22 +1,31 @@
+// function assert(expected, given) {
+//   if (expected ===)
+// }
+
 /**
  * @param {number} numRows
  * @return {number[][]}
  */
 var generate = function (numRows) {
-  var result = [];
-  for (var row = 1; row <= numRows; row++) {
-    result.push(Array(row).fill(1));
-    for (var col = 1; col <= Math.floor(row / 2); col++) {
-      result[row][col] = ;
+  var result = [],
+    val = 1;
+
+  for (var row = 0; row < numRows; row++) {
+    result[row] = [];
+    for (var col = 0; col <= Math.floor(row / 2); col++) {
+      val = col > 0 ? result[row - 1][col - 1] + result[row - 1][col] : 1;
+      result[row][col] = val;
+      result[row][row - col] = val;
     }
   }
+  return result;
 };
 
 console.warn(generate(1), [[1]]);
 
 console.warn(generate(2), [[1], [1, 1]]);
 
-console.warn(generate(5), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]);
+console.warn(generate(4), [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]);
 
 console.warn(generate(5), [
   [1],
